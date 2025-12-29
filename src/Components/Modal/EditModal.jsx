@@ -10,6 +10,8 @@ const EditModal = ({ close, id, setTasks }) => {
     dueDate: ''
   })
 
+
+
   useEffect(() => {
     const fetchTask = async () => {
       try {
@@ -34,7 +36,7 @@ const EditModal = ({ close, id, setTasks }) => {
       const resp = await updateTask(formData, id)
       if (resp) {
         setTasks((prev) =>
-          prev.map((task) => (task.id === resp.data._id ? resp.data : task))
+          prev.map((task) => (task._id || task.id === resp.data._id ? resp.data : task))
         );
         close()
       }
@@ -53,7 +55,7 @@ const EditModal = ({ close, id, setTasks }) => {
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-lg font-semibold text-white">
-            Add Task
+            Edit Task
           </h2>
           <button onClick={close} className="text-slate-400 hover:text-white transition">
             <IoMdClose className="text-xl" />

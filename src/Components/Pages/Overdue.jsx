@@ -8,11 +8,13 @@ import {
 } from "react-icons/io";
 import { AuthContext } from "../../Context/AuthContext";
 import EditModal from "../Modal/EditModal";
+import ConfirmDeleteModal from "../Modal/ConfirmDeleteModal";
 
 const Overdue = () => {
   const { getTask, loader } = useContext(AuthContext);
   const [tasks, setTasks] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [open, setOpen] = useState('')
   const [id, setId] = useState(null)
   const fetchTasks = async () => {
     try {
@@ -40,9 +42,6 @@ const Overdue = () => {
     );
   });
 
-  const getId = (id)=>{
-    setId(id)
-  }
 
   return (
     <div className="min-h-screen bg-slate-950 pb-20 px-5 sm:px-6">
@@ -86,7 +85,7 @@ const Overdue = () => {
                 <span className="px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-red-500/10 text-red-500 border border-red-500/20">
                   {task.status}
                 </span>
-                <button className="text-slate-600 hover:text-red-400 transition-colors">
+                <button onClick={()=>{setOpen(true), setId(task.id || task._id)}} className="text-slate-600 cursor-pointer hover:text-red-400 transition-colors">
                   <IoMdTrash className="text-xl" />
                 </button>
               </div>
@@ -110,7 +109,7 @@ const Overdue = () => {
               {/* Card Footer */}
               <div className="pt-6 border-t border-slate-800/50">
                 <button
-                  onClick={()=>{setOpenModal(true), getId(task.id)}}
+                  onClick={()=>{setOpenModal(true), setId(task.id)}}
                   className="
                     cursor-pointer
                     w-full
@@ -148,6 +147,7 @@ const Overdue = () => {
 
       {/* Edit Modal */}
       {openModal && <EditModal close={() => setOpenModal(false)} id={id} setTasks={setTasks}/>}
+        {open && <ConfirmDeleteModal id={id} close={()=>setOpen(false)} setTasks={setTasks}/>}
     </div>
   );
 };

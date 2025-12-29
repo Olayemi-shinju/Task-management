@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from '../../Context/AuthContext';
 import { FiLoader } from "react-icons/fi";
 const EditProfile = ({ close, user, User }) => {
-    const { updateProfile, loader } = useContext(AuthContext)
+    const { updateProfile, loader, setUser } = useContext(AuthContext)
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -31,7 +31,10 @@ const EditProfile = ({ close, user, User }) => {
         e.preventDefault()
         try {
             const res = await updateProfile(formData)
-            if (res) return close()
+            if (res){
+                setUser(res.data)
+                close()
+            }
         } catch (error) {
             console.log(error.message)
         }

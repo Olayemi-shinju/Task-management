@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IoMdCheckmarkCircle, IoMdTrash, IoMdCalendar } from "react-icons/io";
 import { AuthContext } from '../../Context/AuthContext';
+import ConfirmDeleteModal from "../Modal/ConfirmDeleteModal";
 const Completed = () => {
   const { getTask, loader } = useContext(AuthContext);
   const [tasks, setTasks] = useState([]); // Use plural 'tasks' for arrays
-
+  const [open, setOpen] = useState(false)
+  const [id, setId] = useState('')
   const fetchTasks = async () => {
     try {
       const resp = await getTask();
@@ -44,7 +46,7 @@ const Completed = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filterTask.map((task) => (
             <div
-              key={task._id}
+              key={task.id || task._id}
               className="group bg-slate-900/20 border border-slate-800/40 rounded-[2.5rem] p-7 transition-all duration-300 opacity-80 hover:opacity-100 hover:border-green-500/30"
             >
               {/* Card Top: Done Badge & Delete */}
@@ -52,7 +54,7 @@ const Completed = () => {
                 <span className="px-4 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest bg-green-500/10 text-green-500 border border-green-500/20">
                   Done
                 </span>
-                <button className="text-slate-700 cursor-pointer hover:text-red-400 transition-colors">
+                <button onClick={()=>{setOpen(true), setId(task.id || task._id)}} className="text-slate-700 cursor-pointer cursor-pointer hover:text-red-400 transition-colors">
                   <IoMdTrash className="text-xl" />
                 </button>
               </div>
@@ -96,6 +98,9 @@ const Completed = () => {
           </div>
         )}
       </div>
+      {
+        open && <ConfirmDeleteModal id={id} close={()=>setOpen(false)} setTasks={setTasks} />
+      }
     </div>
   );
 };

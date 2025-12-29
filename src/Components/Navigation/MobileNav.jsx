@@ -3,6 +3,7 @@ import {
   IoMdToday,
   IoMdCalendar,
   IoMdSettings,
+  IoMdCheckmarkCircle,
 } from "react-icons/io";
 import { GoDiscussionOutdated } from "react-icons/go";
 
@@ -33,6 +34,11 @@ const MobileNav = () => {
           <NavLink to="/Overdue" className={linkStyle}>
             <GoDiscussionOutdated className="text-xl" />
             <span className="text-[11px] font-medium">Overdue</span>
+          </NavLink>
+
+           <NavLink to="/Completed" className={linkStyle}>
+            <IoMdCheckmarkCircle className="text-xl" />
+            <span className="text-[11px] font-medium">Completed</span>
           </NavLink>
 
           <NavLink to="/Settings" className={linkStyle}>

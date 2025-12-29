@@ -169,6 +169,42 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const deleteTask = async (id) => {
+        setLoader(true);
+        try {
+            const data = await authService.deleteTask(id);
+            if (data && data.success === true) {
+                toast.success(data.data.msg || "Task deleted successfully");
+                setLoader(false);
+                return data;
+            }
+            setLoader(false);
+            return data;
+        } catch (error) {
+            setLoader(false);
+            toast.error(error?.response?.data?.msg || "An error occurred");
+            throw error;
+        }
+    }
+
+    const updateStatus = async (id, completed) => {
+        setLoader(true);
+        try {
+            const data = await authService.updateStatus(id, completed);
+            if (data && data.success === true) {
+                toast.success(data.data.msg || "Task Updated successfully");
+                setLoader(false);
+                return data;
+            }
+            setLoader(false);
+            return data;
+        } catch (error) {
+            setLoader(false);
+            toast.error(error?.response?.data?.msg || "An error occurred");
+            throw error;
+        }
+    }
+
     return (
         <AuthContext.Provider
             value={{
@@ -183,7 +219,9 @@ export const AuthProvider = ({ children }) => {
                 updateProfile,
                 setUser,
                 getSingleTask,
-                updateTask
+                updateTask,
+                deleteTask,
+                updateStatus
             }}
         >
             {children}

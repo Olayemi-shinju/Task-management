@@ -37,8 +37,8 @@ export const authService ={
          const {data} = await apiClient.put(`/update-task/${id}`, taskData)
         return data
     },
-    updateStatus: async(id, status)=>{
-         const {data} = await apiClient.patch(`/update-status/${id}`, status)
+    updateStatus: async(id, completed)=>{
+         const {data} = await apiClient.patch(`/update-status/${id}`, completed)
         return data
     }
 }
