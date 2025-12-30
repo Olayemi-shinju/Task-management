@@ -7,8 +7,8 @@ const MobileAddTask = ({ setTasks }) => {
 
   return (
     <>
-      {/* Floating button (mobile only) */}
-      <div className="fixed z-40 bottom-25 right-5 lg:hidden">
+      {/* Floating Button */}
+      <div className="fixed z-40 bottom-6 right-5 lg:hidden">
         <button
           onClick={() => setOpenModal(true)}
           className="flex h-12 w-12 bg-blue-600 rounded-full justify-center items-center shadow-lg"
@@ -18,7 +18,10 @@ const MobileAddTask = ({ setTasks }) => {
       </div>
 
       {openModal && (
-        <Modal close={() => setOpenModal(false)} setTask={setTasks} />
+        <Modal
+          setTask={setTasks}
+          close={() => setOpenModal(false)}
+        />
       )}
     </>
   );
