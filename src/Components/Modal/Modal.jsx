@@ -21,6 +21,7 @@ const Modal = ({ close, setTask }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const resp = await createTask(formData);
+    if(!resp) return
     const data = {
       completed: resp.data.completed,
       title: resp.data.title,
@@ -30,7 +31,7 @@ const Modal = ({ close, setTask }) => {
       _id: resp.data._id
     }
     setTask((prev)=>[...prev, data])
-    if (resp) close();
+     close();
   };
 
   return (
