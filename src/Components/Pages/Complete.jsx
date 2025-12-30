@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { IoMdCheckmarkCircle, IoMdTrash, IoMdCalendar } from "react-icons/io";
 import { AuthContext } from '../../Context/AuthContext';
 import ConfirmDeleteModal from "../Modal/ConfirmDeleteModal";
+import MobileAddTask from "../MobileAddTask";
 const Completed = () => {
   const { getTask, loader } = useContext(AuthContext);
   const [tasks, setTasks] = useState([]); // Use plural 'tasks' for arrays
@@ -101,6 +102,8 @@ const Completed = () => {
       {
         open && <ConfirmDeleteModal id={id} close={()=>setOpen(false)} setTasks={setTasks} />
       }
+
+      <MobileAddTask setTasks={setTasks}/>
     </div>
   );
 };

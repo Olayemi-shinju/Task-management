@@ -7,6 +7,7 @@ import {
 } from "react-icons/io";
 import EditModal from "../Modal/EditModal";
 import ConfirmDeleteModal from "../Modal/ConfirmDeleteModal";
+import MobileAddTask from "../MobileAddTask";
 
 const Upcoming = () => {
   const { getTask, loader, updateStatus } = useContext(AuthContext);
@@ -172,6 +173,7 @@ const Upcoming = () => {
       {
         open && <ConfirmDeleteModal id={id} setTasks={setTasks} close={()=>setOpen(false)}/>
       }
+      <MobileAddTask setTasks={setTasks}/>
     </div>
   );
 };

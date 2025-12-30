@@ -9,6 +9,7 @@ import {
 import { AuthContext } from "../../Context/AuthContext";
 import EditModal from "../Modal/EditModal";
 import ConfirmDeleteModal from "../Modal/ConfirmDeleteModal";
+import MobileAddTask from "../MobileAddTask";
 
 const Overdue = () => {
   const { getTask, loader } = useContext(AuthContext);
@@ -148,6 +149,7 @@ const Overdue = () => {
       {/* Edit Modal */}
       {openModal && <EditModal close={() => setOpenModal(false)} id={id} setTasks={setTasks}/>}
         {open && <ConfirmDeleteModal id={id} close={()=>setOpen(false)} setTasks={setTasks}/>}
+          <MobileAddTask setTasks={setTasks}/>
     </div>
   );
 };
