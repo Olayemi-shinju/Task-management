@@ -77,7 +77,7 @@ const Modal = ({ close, setTask }) => {
           {/* Description */}
           <div className="flex flex-col gap-2">
             <label className="text-md font-medium text-slate-200">
-              Description (optional)
+              Description
             </label>
             <textarea
               rows="3"
