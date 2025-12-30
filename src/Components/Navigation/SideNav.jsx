@@ -10,6 +10,7 @@ import { GoDiscussionOutdated } from "react-icons/go";
 import MobileNav from "./MobileNav";
 import { AuthContext } from '../../Context/AuthContext';
 import { useContext } from "react";
+import MobileAddTask from "../MobileAddTask";
 const navItems = [
     {
         label: "Today",
@@ -97,6 +98,8 @@ const SideNav = () => {
                 </div>
             </aside>
             <MobileNav />
+              <MobileAddTask/>
+
         </div>
     );
 };

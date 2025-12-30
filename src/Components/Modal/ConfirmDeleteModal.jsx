@@ -8,7 +8,6 @@ const ConfirmDeleteModal = ({ close, id, setTasks }) => {
     const Delete = async () => {
         try {
             const rep = await deleteTask(id)
-            console.log(rep)
             if(rep){
                 setTasks(rep.data)
 

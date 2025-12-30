@@ -9,6 +9,7 @@ import Modal from "../Modal/Modal";
 import { AuthContext } from "../../Context/AuthContext";
 import EditModal from "../Modal/EditModal";
 import ConfirmDeleteModal from "../Modal/ConfirmDeleteModal";
+import MobileAddTask from "../MobileAddTask";
 
 export const Dashboard = () => {
     const { getTask, updateStatus, loader } = useContext(AuthContext);
@@ -77,7 +78,7 @@ export const Dashboard = () => {
 
                     <button
                         onClick={() => setOpenModal(true)}
-                        className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-2xl"
+                        className="lg:flex hidden items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-2xl"
                     >
                         <IoMdAdd className="text-xl" />
                         <span className="font-semibold text-sm">New Task</span>
@@ -160,6 +161,9 @@ export const Dashboard = () => {
             {
                 open && <ConfirmDeleteModal id={id} close={()=>setOpen(false)} setTasks={setTasks} />
             }
+
+          <MobileAddTask setTasks={setTasks} />
+
         </div>
     );
 };

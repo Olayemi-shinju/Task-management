@@ -21,7 +21,6 @@ const Modal = ({ close, setTask }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const resp = await createTask(formData);
-    console.log(resp)
     const data = {
       completed: resp.data.completed,
       title: resp.data.title,
